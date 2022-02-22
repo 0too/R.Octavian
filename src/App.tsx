@@ -1,28 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.css'
+import './index.css'
+
+import {LayoutCustom} from './Layouts/LayoutCustom'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <h1>Lucrare de laborator nr.1</h1>
-        <h1>Rusu Octavian CR-192</h1>
-      </header>
-    </div>
-  );
+  return (  
+    <LayoutCustom />
+  )
 }
 
 export default App;
