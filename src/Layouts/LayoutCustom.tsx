@@ -1,5 +1,6 @@
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { Card, Col, Row } from 'antd';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -50,7 +51,7 @@ export const LayoutCustom = () => {
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>List</Breadcrumb.Item>
           <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
+            </Breadcrumb>
         <Content
           className="site-layout-background"
           style={{
@@ -58,13 +59,31 @@ export const LayoutCustom = () => {
             margin: 0,
             minHeight: 280,
           }}
-        >
-          Content
+            >
+               <div className="site-card-wrapper">
+    <Row gutter={16}>
+      <Col span={8}>
+        <Card title="Card title" bordered={false}>
+          Card content
+        </Card>
+      </Col>
+      <Col span={8}>
+        <Card title="Card title" bordered={false}>
+          Card content
+        </Card>
+      </Col>
+      <Col span={8}>
+        <Card title="Card title" bordered={false}>
+          Card content
+        </Card>
+      </Col>
+    </Row>
+  </div>,
         </Content>
-      </Layout>
+
+          </Layout>
     </Layout>
       </Layout>,
-      
     </div>
   );
 }
