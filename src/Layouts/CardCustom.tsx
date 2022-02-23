@@ -1,34 +1,40 @@
-import { Checkbox, Input } from 'antd'
+import { Button, Input } from 'antd'
 import Card from 'antd/lib/card'
-import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
-import { IContentModel } from '../interfaces/interfaces'
+import { useEffect, useRef, useState } from 'react'
 
 
-export const CardCustom = observer(({ content }: { content: IContentModel }) => {
+export const CardCustom = ({
+                               title,
+                               description
+                               // callBack
+                           }: { title: string, description: string,/* callBack: (str: any) => void */ }) => {
 
-    const { title, description, notes, changeNotes, isSeen, changeSeen, seen } = content
+    const [ inputValue, setInputValue ] = useState('')
 
+    const refS = useRef(null)
 
     useEffect(() => {
-        if (isSeen) {
-            alert(`Is seen ${ title }`)
-        }
-    }, [ isSeen ])
+        // console.log('>>refS', refS)
+
+        // return () => {
+        //     console.log('>>Unmount')
+        // }
+
+    }, [ refS ])
+
+
+    const showValueInAlert = () => {
+        alert(inputValue)
+    }
 
     return (
-        <Card title={ title } bordered={ false }>
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        <Card ref={ refS } /*onClick={ (e) => callBack(e) } */ title={ title } bordered={ false }>
             { description }
-
-            <Input
-                value={ notes }
-                placeholder={ notes }
-                onChange={ (e) => changeNotes(e.target.value) }
-            />
-
-            <Checkbox defaultChecked={ seen } checked={ seen } onChange={ (e) => changeSeen(e.target.checked) } />
-
+            <Input onChange={ (e) => setInputValue(e.target.value) } value={ inputValue } placeholder={ title } />
+            <Button onClick={ showValueInAlert }>Send</Button>
         </Card>
     )
 
-})
+}
