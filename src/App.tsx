@@ -1,15 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import 'antd/dist/antd.css'
-import './index.css'
+import React from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-import {LayoutCustom} from './Layouts/LayoutCustom'
+import { Layout } from 'antd'
+import { HeaderLayout } from './Layouts/HeaderLayout'
+import { ContentLayout } from './Layouts/ContentLayout'
 
 function App() {
-  return (  
-    <LayoutCustom />
-  )
+    return (
+        <>
+            <Layout className='layout'>
+                <HeaderLayout />
+                <ContentLayout />
+            </Layout>
+        </>
+    )
 }
 
-export default App;
+export default App
