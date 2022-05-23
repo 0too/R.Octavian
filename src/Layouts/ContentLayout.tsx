@@ -1,39 +1,14 @@
-import { Breadcrumb, Layout, Menu } from 'antd'
+import { Breadcrumb, Layout, Row } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
+import { Routes, Route } from 'react-router-dom'
 import { CustomForm } from '../components/CustomForm/CustomForm'
-import { CardCustom } from './CardCustom'
+import { ROUTES } from '../Routes/Rourtes'
+import { Articles } from './Articles/Articles'
 
-const { Header } = Layout
-
-const informations = [
-    {
-        id: 1,
-        title: 'Title',
-        description: 'Some more text'
-    },
-    {
-        id: 2,
-        title: 'Title 2',
-        description: 'Some more text'
-    },
-    {
-        id: 3,
-        title: 'Title 3',
-        description: 'Some more text'
-    },
-    {
-        id: 4,
-        title: 'Title 4',
-        description: 'Some more text'
-    }
-]
+const { Footer } = Layout
 
 export const ContentLayout = () => {
 
-    // const showConsoleInformatios = (e: any) => {
-    //     console.log('>>informations', informations)
-    //     console.log('>>Event', e)
-    // }
 
     return (
         <>
@@ -44,21 +19,15 @@ export const ContentLayout = () => {
                     <Breadcrumb.Item>App</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className='site-layout-content'>
-                    <CustomForm />
 
-                    <div>  ---- </div>
-
-                    { informations.map((el, index) => {
-                        return (
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-ignore
-                            <CardCustom key={ el.id } title={ el.title }
-                                        description={ el.description } /*callBack={showConsoleInformatios} */ />
-                        )
-                    })
-                    }
+                    <Routes>
+                        <Route path={ ROUTES[0].path } />
+                        <Route path={ ROUTES[1].path } element={ <Articles /> } />
+                        <Route path={ ROUTES[3].path } element={ <CustomForm /> } />
+                    </Routes>
                 </div>
             </Content>
+            <Footer style={ { textAlign: 'center' } }>Ant Design ©2018 Created by Ant UED</Footer>
         </>
 
     )
