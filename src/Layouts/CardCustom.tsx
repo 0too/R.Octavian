@@ -1,40 +1,36 @@
-import { Button, Input } from 'antd'
+import { Checkbox, Input, Tooltip } from 'antd'
 import Card from 'antd/lib/card'
-import { useEffect, useRef, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
+import { IContentModel } from '../interfaces/interfaces'
 
 
-export const CardCustom = ({
-                               title,
-                               description
-                               // callBack
-                           }: { title: string, description: string,/* callBack: (str: any) => void */ }) => {
+export const CardCustom = observer(({ content }: { content: IContentModel }) => {
 
-    const [ inputValue, setInputValue ] = useState('')
-
-    const refS = useRef(null)
-
-    useEffect(() => {
-        // console.log('>>refS', refS)
-
-        // return () => {
-        //     console.log('>>Unmount')
-        // }
-
-    }, [ refS ])
+    const { title, description,  } = content
 
 
-    const showValueInAlert = () => {
-        alert(inputValue)
-    }
+    // useEffect(() => {
+    //     if (isSeen) {
+    //         // alert(`Is seen ${ title }`)
+    //         console.log(`>>${ title }`, title)
+    //     }
+    //
+    // }, [ isSeen ])
 
     return (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        <Card ref={ refS } /*onClick={ (e) => callBack(e) } */ title={ title } bordered={ false }>
+        <Card title={ <Tooltip title={ title }>{ title }</Tooltip> } bordered={ false }>
             { description }
-            <Input onChange={ (e) => setInputValue(e.target.value) } value={ inputValue } placeholder={ title } />
-            <Button onClick={ showValueInAlert }>Send</Button>
+
+            {/*<Input*/ }
+            {/*    value={ notes }*/ }
+            {/*    placeholder={ notes }*/ }
+            {/*    onChange={ (e) => changeNotes(e.target.value) }*/ }
+            {/*/>*/ }
+
+            {/*<Checkbox defaultChecked={ seen } checked={ seen } onChange={ (e) => changeSeen(e.target.checked) } />*/ }
+
         </Card>
     )
 
-}
+})
